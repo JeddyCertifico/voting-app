@@ -9,15 +9,15 @@ const url = "https://voting-app-grp-1.onrender.com";
 
 app.set("view engine", "ejs");
 app.get("/", function (req, res) {
-  res.render("pages/index", { url: url });
+  res.render("pages/index", { url: url, title: "Result" });
 });
 
 app.get("/result", function (req, res) {
-  res.render("pages/index", { url: url });
+  res.render("pages/index", { url: url, title: "Result" });
 });
 
 app.get("/vote", function (req, res) {
-  res.render("pages/vote", { url: url });
+  res.render("pages/vote", { url: url, title: "Vote" });
 });
 
 const languages = ["javascript", "php", "python", "java"];
