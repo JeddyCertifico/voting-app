@@ -22,12 +22,11 @@ app.get("/vote", function (req, res) {
 const languages = ["javascript", "php", "python", "java"];
 
 io.sockets.on("connection", (socket) => {
-  for (let i = 0; i < languages.length; i++) {
-    const language = languages[i];
+  languages.forEach((language) => {
     socket.on(`vote_${language}`, (vote) => {
       io.sockets.emit(`vote_${language}`, vote);
     });
-  }
+  });
 });
 
 app.use("/views", express.static("views"));
