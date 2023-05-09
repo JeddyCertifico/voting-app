@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <main>
+      <%- include('../partials/navbar') %>
+      <div class="container-fluid mt-lg-0 mt-sm-5">
+        <div class="row">
+          <div class="col-sm-12">
+            <p style="color: black; font-size: 2rem" class="fw-bold text-center m-5">VOTE FOR BEST LANGUAGE IN BACKEND!</p>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="row text-center">
+              <div class="col-md-6 col-lg-3">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/java-script.png" alt="" />
+                </div>
+                <br />
+                <button class="btn btn-dark p-2" id="btn_javascript">JavaScript</button>
+              </div>
+              <div class="col-md-6 col-lg-3 mt-sm-3 mt-lg-0">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/php.png" alt="" />
+                </div>
+                <br />
+                <button class="btn btn-dark p-2" id="btn_php">PHP</button>
+              </div>
+              <div class="col-md-6 col-lg-3 mt-sm-3 mt-lg-0">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/python.png" alt="" />
+                </div>
+                <br />
+                <button class="btn btn-dark p-2" id="btn_python">Python</button>
+              </div>
+              <div class="col-md-6 col-lg-3 mt-sm-3 mt-lg-0">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/java.png" alt="" />
+                </div>
+                <br />
+                <button class="btn btn-dark p-2" id="btn_java">Java</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    const socket = io.connect("http://localhost:8000");
+
+    const buttons = $(".btn-dark");
+
+    buttons.click(function () {
+      const buttonId = $(this).attr("id");
+
+      switch (buttonId) {
+        case "btn_javascript":
+          socket.emit("vote_javascript", 1);
+          break;
+        case "btn_php":
+          socket.emit("vote_php", 1);
+          break;
+        case "btn_python":
+          socket.emit("vote_python", 1);
+          break;
+        case "btn_java":
+          socket.emit("vote_java", 1);
+          break;
+        default:
+          break;
+      }
+
+      buttons.attr("disabled", true);
+
+      alert(`You voted for ${$(this).text()}!`);
+    });
+  </script>
+</html>

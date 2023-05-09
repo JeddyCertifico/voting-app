@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+body {
+  height: 100vh;
+  background: rgba(0, 0, 0, 0) url(/public/img/background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.img-fluid {
+  height: 100%;
+  margin-bottom: 1em;
+}
+
+.btn {
+  background: #394867;
+  font-weight: bold;
+}
+
+.img-container {
+  height: 12rem;
+}
+
+span {
+  font-weight: bold;
+  color: white;
+}

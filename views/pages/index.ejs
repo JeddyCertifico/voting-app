@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <main>
+      <%- include('../partials/navbar') %>
+      <div class="container-fluid mt-lg-0 mt-sm-5">
+        <div class="row">
+          <div class="col-sm-12">
+            <p style="color: black; font-size: 2rem" class="fw-bold text-center m-5">RESULT FOR BEST LANGUAGE IN BACKEND!</p>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="row text-center">
+              <div class="col-md-6 col-lg-3">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/java-script.png" alt="" />
+                </div>
+                <br />
+                <p class="text-bg-dark p-3 rounded fa fa-font-case"><span id="result_javascript">1000</span> Votes</p>
+              </div>
+              <div class="col-md-6 col-lg-3 mt-sm-3 mt-lg-0">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/php.png" alt="" />
+                </div>
+                <br />
+                <p class="text-bg-dark p-3 rounded fa fa-font-case"><span id="result_php">1000</span> Votes</p>
+              </div>
+              <div class="col-md-6 col-lg-3 mt-sm-3 mt-lg-0">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/python.png" alt="" />
+                </div>
+                <br />
+                <p class="text-bg-dark p-3 rounded fa fa-font-case"><span id="result_python">1000</span> Votes</p>
+              </div>
+              <div class="col-md-6 col-lg-3 mt-sm-3 mt-lg-0">
+                <div class="img-container">
+                  <img class="img-fluid" src="/public/img/java.png" alt="" />
+                </div>
+                <br />
+                <p class="text-bg-dark p-3 rounded fa fa-font-case"><span id="result_java">1000</span> Votes</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    const socket = io.connect("http://localhost:8000");
+
+    const languages = ["javascript", "php", "python", "java"];
+
+    languages.forEach((language) => {
+      socket.on(`vote_${language}`, (data) => {
+        var count = parseInt($(`#result_${language}`).text());
+        $(`#result_${language}`).text(count + data);
+      });
+    });
+  </script>
+</html>
