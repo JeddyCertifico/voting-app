@@ -5,18 +5,19 @@ const http = require("http");
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const PORT = process.env.PORT || 8000;
+const url = "https://voting-app-grp-1.onrender.com";
 
 app.set("view engine", "ejs");
 app.get("/", function (req, res) {
-  res.render("pages/index");
+  res.render("pages/index", { url: url });
 });
 
 app.get("/result", function (req, res) {
-  res.render("pages/index");
+  res.render("pages/index", { url: url });
 });
 
 app.get("/vote", function (req, res) {
-  res.render("pages/vote");
+  res.render("pages/vote", { url: url });
 });
 
 const languages = ["javascript", "php", "python", "java"];

@@ -4,6 +4,7 @@
     <%- include('../partials/head') %>
   </head>
   <body>
+    <div class="d-none" id="url">${url}</div>
     <main>
       <%- include('../partials/navbar') %>
       <div class="container-fluid mt-lg-0 mt-sm-5">
@@ -52,7 +53,7 @@
     </main>
   </body>
   <script>
-    const socket = io.connect("http://localhost:8000");
+    const socket = io.connect($("#url").text());
 
     const languages = ["javascript", "php", "python", "java"];
 

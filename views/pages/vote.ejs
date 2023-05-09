@@ -5,6 +5,7 @@
   </head>
   <body>
     <main>
+      <div class="d-none" id="url">${url}</div>
       <%- include('../partials/navbar') %>
       <div class="container-fluid mt-lg-0 mt-sm-5">
         <div class="row">
@@ -52,8 +53,7 @@
     </main>
   </body>
   <script>
-    const socket = io.connect("http://localhost:8000");
-
+    const socket = io.connect($("#url").text());
     const buttons = $(".btn-dark");
 
     buttons.click(function () {
