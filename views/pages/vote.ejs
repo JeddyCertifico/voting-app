@@ -56,25 +56,16 @@
     const socket = io.connect($("#url").text());
     const buttons = $(".btn-dark");
 
+    const languages = ["javascript", "php", "python", "java"];
+
     buttons.click(function () {
       const buttonId = $(this).attr("id");
 
-      switch (buttonId) {
-        case "btn_javascript":
-          socket.emit("vote_javascript", 1);
-          break;
-        case "btn_php":
-          socket.emit("vote_php", 1);
-          break;
-        case "btn_python":
-          socket.emit("vote_python", 1);
-          break;
-        case "btn_java":
-          socket.emit("vote_java", 1);
-          break;
-        default:
-          break;
-      }
+      languages.forEach((language) => {
+        if (buttonId.includes(language)) {
+          socket.emit(`vote_${language}`, 1);
+        }
+      });
 
       buttons.attr("disabled", true);
 
